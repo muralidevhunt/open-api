@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="main.js"></script> -->
+    <title>chuck norris jokes</title>
+</head>
+
+<body>
+    <h1 class="title">
+        <a href="https://muralidevhunt.github.io/chuck-norris-jokes/"> chuck norris jokes</a>
+    </h1>
+    <!-- <img src="1.jpg" id="logo" alt=""> -->
+    <div class="content">
+        <a href="#" class="btn" id="logo">click joke</a>
+    </div>
+    <div id="data"></div> 
+    <!-- <span>--</span> -->
+    <div class="img"><a href="https://api.chucknorris.io/"><img src="chuck.png" alt=""></a></div>
+    <footer class="footer">
+        <ul class="social">
+            <li><a href="https://www.facebook.com/b.tech.nani1"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://twitter.com/IMuraliTweets"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/murali_sa_i/"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/muralidevhunt"><i class="fab fa-github"></i></a></li>
+        </ul>
+    </footer>
+
+    <!-- javascript data -->
+    <script>
+        const data = document.getElementById("data");
+        const logo = document.getElementById("logo");
+        function randomFact() {
+            var xmlhttp = new XMLHttpRequest();
+            var url = "https://api.chucknorris.io/jokes/random";
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var json = JSON.parse(this.responseText);
+                    parseResponse(json);
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+        function parseResponse(json) {
+            data.innerHTML = "<b>" + json["value"] + "</b>";
+        }
+
+        logo.addEventListener("click", function () {
+            randomFact();
+        });
+        randomFact();
+    </script>
+</body>
+
+</html>
